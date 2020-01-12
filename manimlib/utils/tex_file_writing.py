@@ -25,6 +25,9 @@ def generate_tex_file(expression, template_tex_file_body):
         consts.TEX_DIR,
         tex_hash(expression, template_tex_file_body)
     ) + ".tex"
+    if os.name == "nt":
+        result = result.replace("\\","/")
+
     if not os.path.exists(result):
         print("Writing \"%s\" to %s" % (
             "".join(expression), result
@@ -51,6 +54,7 @@ def tex_to_dvi(tex_file):
         ] if not TEX_USE_CTEX else [
             "xelatex",
             "-no-pdf",
+            "-shell-escape",
             "-interaction=batchmode",
             "-halt-on-error",
             "-output-directory=\"{}\"".format(consts.TEX_DIR),
@@ -58,6 +62,7 @@ def tex_to_dvi(tex_file):
             ">",
             os.devnull
         ]
+        print(" ".join(commands))
         exit_code = os.system(" ".join(commands))
         if exit_code != 0:
             log_file = tex_file.replace(".tex", ".log")
@@ -88,5 +93,6 @@ def dvi_to_svg(dvi_file, regen_if_exists=False):
             ">",
             os.devnull
         ]
+        print(" ".join(commands))
         os.system(" ".join(commands))
     return result

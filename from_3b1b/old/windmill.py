@@ -189,9 +189,9 @@ class IntroduceIMO(Scene):
     def get_flags(self):
         year = self.year
         file = "{}_imo_countries.json".format(year)
-        with open(os.path.join("assets", file)) as fp:
+        with open(os.path.join("assets", file),encoding="utf-8") as fp:
             countries_with_counts = json.load(fp)
-        with open(os.path.join("assets", "country_codes.json")) as fp:
+        with open(os.path.join("assets", "country_codes.json"),encoding="utf-8") as fp:
             country_codes = json.load(fp)
             country_to_code2 = dict([
                 (country.lower(), code2.lower())

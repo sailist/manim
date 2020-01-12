@@ -8,6 +8,7 @@ mayavi_test.py
 random_scenes/
 files/
 assets/
+manim_project/
 ben_playground.py
 ben_cairo_test.py
 .floo
@@ -16,7 +17,7 @@ ben_cairo_test.py
 .vs
 *.xml
 *.iml
-media
+media/
 manim.sublime-project
 manim.sublime-workspace
 .eggs/

@@ -39,6 +39,7 @@ def initialize_directories(config):
             )
 
     TEX_DIR = config["tex_dir"] or os.path.join(MEDIA_DIR, "Tex")
+
     TEXT_DIR = os.path.join(MEDIA_DIR, "texts")
     if not video_path_specified:
         VIDEO_DIR = os.path.join(MEDIA_DIR, "videos")
@@ -71,13 +72,13 @@ ITALIC = 'ITALIC'
 OBLIQUE = 'OBLIQUE'
 BOLD = 'BOLD'
 
-TEX_USE_CTEX = False
+TEX_USE_CTEX = True
 TEX_TEXT_TO_REPLACE = "YourTextHere"
 TEMPLATE_TEX_FILE = os.path.join(
     os.path.dirname(os.path.realpath(__file__)),
     "tex_template.tex" if not TEX_USE_CTEX else "ctex_template.tex"
 )
-with open(TEMPLATE_TEX_FILE, "r") as infile:
+with open(TEMPLATE_TEX_FILE, "r",encoding="utf-8") as infile:
     TEMPLATE_TEXT_FILE_BODY = infile.read()
     TEMPLATE_TEX_FILE_BODY = TEMPLATE_TEXT_FILE_BODY.replace(
         TEX_TEXT_TO_REPLACE,

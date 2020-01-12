@@ -17,7 +17,7 @@ from manimlib.imports import *
 
 class OpeningManimExample(Scene):
     def construct(self):
-        title = TextMobject("This is some \\LaTeX")
+        title = TextMobject("这是中文示例 is some \\LaTeX")
         basel = TexMobject(
             "\\sum_{n=1}^\\infty "
             "\\frac{1}{n^2} = \\frac{\\pi^2}{6}"
@@ -134,3 +134,24 @@ class UpdatersExample(Scene):
         self.wait()
 
 # See old_projects folder for many, many more
+
+if __name__ == "__main__":
+    # Call this file at command line to make sure all scenes work with version of manim
+    # type "python manim_tutorial_P37.py" at command line to run all scenes in this file
+    #Must have "import os" and  "import pyclbr" at start of file to use this
+    ###Using Python class browser to determine which classes are defined in this file
+    # from manimlib import main
+    import pyclbr,os
+    fn = os.path.split(__file__)[1]
+    fpre = os.path.splitext(fn)[0]
+    module_name = fpre   #Name of current file
+    module_info = pyclbr.readmodule(module_name)
+    import manimlib
+    for item in module_info.values():
+        if item.module==module_name:
+            # print(item.name)
+            # sys.argv
+            sys.argv = ["manim.py",fn,item.name,"-l"]
+            # print("python manim.py manim_tutorial_P37.py %s -l" % item.name)
+            manimlib.main()
+            # os.system("python manim.py manim_tutorial_P37.py %s -l" % item.name)  #Does not play files

@@ -299,7 +299,7 @@ class SceneFileWriter(object):
             self.partial_movie_directory,
             "partial_movie_file_list.txt"
         )
-        with open(file_list, 'w') as fp:
+        with open(file_list, 'w',encoding="utf-8") as fp:
             for pf_path in partial_movie_files:
                 if os.name == 'nt':
                     pf_path = pf_path.replace('\\', '/')
